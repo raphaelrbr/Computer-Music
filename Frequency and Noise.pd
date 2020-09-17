@@ -1,0 +1,152 @@
+#N canvas 134 157 372 292 12;
+#X text 59 23 Raphael Ribeiro - NUSP 1.02816e+07;
+#N canvas 215 23 1440 803 exercicio1 0;
+#X obj 60 202 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 60 234 tabplay~ sinal1;
+#X obj 61 273 dac~, f 6;
+#X obj 194 204 hradio 10 1 0 25 empty empty empty 0 -8 0 10 -262144
+-1 -1 9;
+#X obj 194 236 ofelia f \; local x = ofArray("sinal1") \; local f =
+200*2^(a/12) \; for n = 0 \, x:getSize()-1 do \; x[n] = math.sin(2*math.pi*f*n/44100)
+\; end;
+#N canvas 0 23 450 278 (subpatch) 0;
+#X array sinal1 88200 float 2;
+#X coords 0 1 200 -1 200 140 1 0 0;
+#X restore 55 17 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array sinal2 88200 float 2;
+#X coords 0 1 200 -1 200 140 1 0 0;
+#X restore 31 382 graph;
+#X obj 550 185 hradio 10 1 0 25 empty empty empty 0 -8 0 10 -262144
+-1 -1 17;
+#X obj 35 566 tabplay~ sinal2;
+#X obj 36 533 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 551 223 ofelia f \; local x = ofArray("sinal1") \; local y =
+ofArray("sinal2") \; local f = 200*2^(a/12) \; for n = 0 \, x:getSize()-1
+do \; y[n] = math.sin(2*math.pi*f*n/44100) \; y[n] = y[n] * 0.5 \;
+y[n] = y[n] + x[n] \; y[n] = y[n] * 0.5 \; end;
+#X obj 34 601 dac~;
+#X obj 206 533 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 206 569 ofelia f \; local x = ofArray("sinal1") \; local y =
+ofArray("sinal2") \; for n = 0 \, x:getSize()-1 do \; y[n] = (x[n]
+* x[n]) \; end;
+#X obj 426 536 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 644 534 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 869 532 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 426 571 ofelia f \; local x = ofArray("sinal1") \; local y =
+ofArray("sinal2") \; for n = 0 \, x:getSize()-1 do \; y[n] = (4*(x[n]^3)
+- 3*x[n]) \; end;
+#X obj 644 570 ofelia f \; local x = ofArray("sinal1") \; local y =
+ofArray("sinal2") \; for n = 0 \, x:getSize()-1 do \; y[n] = (x[n]
+^ 15) \; end;
+#X obj 206 661 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 871 567 ofelia f \; local x = ofArray("sinal1") \; local y =
+ofArray("sinal2") \; for n = 0 \, x:getSize()-1 do \; y[n] = 2*(math.max(math.min(x[n]
+\, 1/2) \, -1/2)) \; end;
+#X obj 206 697 ofelia f \; local x = ofArray("sinal1") \; local y =
+ofArray("sinal2") \; for n = 0 \, x:getSize()-1 do \; local z = 2*math.pi*n/44100
+\; y[n] = x[n]*math.sin(z) \; end;
+#X obj 423 659 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 422 695 ofelia f \; local x = ofArray("sinal1") \; local y =
+ofArray("sinal2") \; for n = 0 \, x:getSize()-1 do \; local z = 2*math.pi*n*100/44100
+\; y[n] = x[n]*math.sin(z) \; end;
+#X obj 675 667 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 674 703 ofelia f \; local x = ofArray("sinal1") \; local y =
+ofArray("sinal2") \; for n = 0 \, x:getSize()-1 do \; local z = 2*math.pi*n*(100+x[n])/44100
+\; y[n] = math.sin(z) \; end;
+#X text 833 230 Ao combinar o sinal1 com o sinal2 \, tive a impressão
+de escutar algo equivalente a um acorde um instrumento;
+#X text 780 664 Estes sons parecem bem eletrônicos \, como um Barulho
+de campainha \, botão ou despertador;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 0 2 1;
+#X connect 3 0 4 0;
+#X connect 7 0 10 0;
+#X connect 8 0 11 0;
+#X connect 8 0 11 1;
+#X connect 9 0 8 0;
+#X connect 12 0 13 0;
+#X connect 14 0 17 0;
+#X connect 15 0 18 0;
+#X connect 16 0 20 0;
+#X connect 19 0 21 0;
+#X connect 22 0 23 0;
+#X connect 24 0 25 0;
+#X restore 48 74 pd exercicio1;
+#N canvas 0 23 1440 803 exercicio2 1;
+#X obj 58 233 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 59 304 dac~, f 6;
+#X obj 192 234 hradio 10 1 0 10 empty empty empty 0 -8 0 10 -262144
+-1 -1 9;
+#N canvas 0 23 450 278 (subpatch) 0;
+#X array ruido1 88200 float 2;
+#X coords 0 1 200 -1 200 140 1 0 0;
+#X restore 53 48 graph;
+#X obj 191 267 ofelia f \; local x = ofArray("ruido1") \; local amp
+= 3e-5*(1/3e-5)^(a/9) \; for n = 1 \, x:getSize()-1 do \; x[n] = amp*(math.random()*2-1)
+\; end;
+#X obj 58 265 tabplay~ ruido1;
+#X obj 194 596 ofelia f \; local x = ofArray("ruido1") \; local y =
+ofArray("ruido2") \; y[0] = x[0] for n = 1 \, x:getSize()-1 do \; y[n]
+= 1/2 * (x[n]-x[n-1]) \; end;
+#X obj 193 567 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#N canvas 0 23 450 278 (subpatch) 0;
+#X array ruido2 88200 float 2;
+#X coords 0 1 200 -1 200 140 1 0 0;
+#X restore 57 420 graph;
+#X obj 50 587 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 51 658 dac~, f 6;
+#X obj 50 619 tabplay~ ruido2;
+#X obj 328 835 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#N canvas 0 23 450 278 (subpatch) 0;
+#X array ruido3 88200 float 2;
+#X coords 0 1 200 -1 200 140 1 0 0;
+#X restore 54 736 graph;
+#X obj 47 903 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 48 974 dac~, f 6;
+#X obj 47 935 tabplay~ ruido3;
+#X obj 329 871 ofelia f \; local x = ofArray("ruido1") \; local y =
+ofArray("ruido3") \; y[0] = x[0] y[0] = x[0] for n = 1 \, x:getSize()-1
+do \; y[n] = x[n] + y[n-1] end maximo = math.abs(y[0]) \; for n = 1
+\, x:getSize()-1 do \; maximo = math.max(maximo \, math.abs(y[n]))
+\; end for n = 1 \, x:getSize()-1 do \; y[n] = y[n] / maximo end;
+#X text 785 846 Em comparação com os sons anteriores \, este som
+Passa uma impressão mais suave \, sendo levemente agradável. O som
+parece ser mais constante;
+#X text 857 823 comment;
+#X text 1041 812 comment;
+#X text 552 283 Este som traz uma percepção aleatória \, sendo muito
+desagradável;
+#X text 555 641 Este som parece ser mais baixo e menos desagradável
+que o anterior;
+#X text 141 397 Ruido Violeta;
+#X text 157 26 Ruido Branco;
+#X text 149 717 Ruido Vermelho;
+#X connect 0 0 5 0;
+#X connect 2 0 4 0;
+#X connect 5 0 1 0;
+#X connect 5 0 1 1;
+#X connect 7 0 6 0;
+#X connect 9 0 11 0;
+#X connect 11 0 10 0;
+#X connect 11 0 10 1;
+#X connect 12 0 17 0;
+#X connect 14 0 16 0;
+#X connect 16 0 15 0;
+#X connect 16 0 15 1;
+#X restore 49 112 pd exercicio2;
